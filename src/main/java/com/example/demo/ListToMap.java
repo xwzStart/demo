@@ -64,6 +64,8 @@ public class ListToMap {
          * {1=House{id=1, ownerid=1, housename='aa', address='北京海淀'}, 
          * 2=House{id=2, ownerid=2, housename='bb', address='湖北武汉'}, 
          * 3=House{id=3, ownerid=3, housename='cc', address='浙江杭州'}}
+         *
+         * 添加git插件
          */
 
     }
