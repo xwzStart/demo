@@ -1,14 +1,14 @@
 package com.example.pojo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Student {
     private String name;
-    private String age = "12";
+    private Integer age;
 
-    public String getName(String name) {
-        this.name = "橘子";
-        return name;
-    }
 }

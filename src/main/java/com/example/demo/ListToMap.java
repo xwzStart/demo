@@ -11,11 +11,37 @@ public class ListToMap {
     public static void main(String[] args) {
         House house = new House(1, 1, "aa", "北京海淀");
         House house1 = new House(2, 2, "bb", "湖北武汉");
-        House house2 = new House(3, 1, "cc", "浙江杭州");
+        House house2 = new House(3, 3, "cc", "浙江杭州");
         List<House> houses = new ArrayList<>();
         houses.add(house);
         houses.add(house1);
         houses.add(house2);
+
+        Random random = new Random();
+        Map<Integer, String> map = houses.stream().collect(Collectors.toMap(House::getOwnerid, House::getHousename));
+        int size = map.size();
+        int i = random.nextInt(size);
+        System.out.println(map.values().toArray()[i]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        Map<Integer, String> map = houses.stream().collect(Collectors.toMap(House::getOwnerid, House::getHousename,(last,next) -> next));
+//        System.out.println(map);
+
         //在实际项目中我们经常会用到 List 转 Map 操作 ->过去是for循环的操作，现在可以学习如下的方法Collectors.toMap
         /**
          * 我们收集一下集合中每个对象的两个单独的属性
@@ -32,12 +58,12 @@ public class ListToMap {
         /**
          * (last,next)->next 如果key重复，取后面的value值
          */
-        Map<Integer, String> map = houses.stream().collect(Collectors.toMap(House::getOwnerid, House::getHousename,(last,next)->next));
+//        Map<Integer, String> map = houses.stream().collect(Collectors.toMap(House::getOwnerid, House::getHousename,(last,next) -> next));
 //        Map<Integer, String> map = new HashMap<>();
 //        for (House housesList : houses) {
 //            map.put(housesList.getOwnerid(),housesList.getHousename());
 //        }
-        System.out.println(map);
+//        System.out.println(map);
 
 //        System.out.println(map);
         //{1=aa, 2=bb, 3=cc}
@@ -65,7 +91,7 @@ public class ListToMap {
          * 2=House{id=2, ownerid=2, housename='bb', address='湖北武汉'}, 
          * 3=House{id=3, ownerid=3, housename='cc', address='浙江杭州'}}
          *
-         * 添加git插件
+         * 添加git 插件
          */
 
     }
