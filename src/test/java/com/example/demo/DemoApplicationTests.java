@@ -1,14 +1,18 @@
 package com.example.demo;
 
+import com.example.DemoApplication;
 import com.example.pojo.Person;
 import com.example.pojo.Student;
 import org.apache.maven.surefire.shade.org.apache.commons.lang3.StringUtils;
 import org.assertj.core.util.DateUtil;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.Assert;
 
+import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -19,9 +23,13 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,classes = DemoApplication.class)
 @SpringBootTest
 class DemoApplicationTests {
 
+    @Resource
+    private SensitiveService sensitive;
     @Test
     void contextLoads() {
         Map<String, Integer> map = new HashMap<>();
@@ -420,7 +428,9 @@ class DemoApplicationTests {
 
     @Test
     void contextLoads30() {
-
+        String filter = sensitive.filter("你是,习平,吗?");
+        System.out.println(filter);
     }
+
 
 }

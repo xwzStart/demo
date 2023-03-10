@@ -9,19 +9,25 @@ import java.util.stream.Collectors;
 public class ListToMap {
 
     public static void main(String[] args) {
-        House house = new House(1, 1, "aa", "北京海淀");
-        House house1 = new House(2, 2, "bb", "湖北武汉");
-        House house2 = new House(3, 3, "cc", "浙江杭州");
-        List<House> houses = new ArrayList<>();
-        houses.add(house);
-        houses.add(house1);
-        houses.add(house2);
+        House house = new House(1, 111, "aa", "北京海淀");
+        House house1 = new House(2, 111, "bb", "湖北武汉");
+        House house2 = new House(3, 222, "cc", "河南郑州");
+        House house3 = new House(4, 333, "dd", "上海闵行");
+        House house4 = new House(5, 333, "ee", "广东广州");
+        List<House> housesList = new ArrayList<>();
+        housesList.add(house);
+        housesList.add(house1);
+        housesList.add(house2);
+        housesList.add(house3);
+        housesList.add(house4);
+        Map<Integer, Long> collect = housesList.stream().collect(Collectors.groupingBy(t -> t.getOwnerid(), Collectors.counting()));
+        System.out.println(collect);
 
-        Random random = new Random();
-        Map<Integer, String> map = houses.stream().collect(Collectors.toMap(House::getOwnerid, House::getHousename));
-        int size = map.size();
-        int i = random.nextInt(size);
-        System.out.println(map.values().toArray()[i]);
+//        Random random = new Random();
+//        Map<Integer, String> map = houses.stream().collect(Collectors.toMap(House::getOwnerid, House::getHousename));
+//        int size = map.size();
+//        int i = random.nextInt(size);
+//        System.out.println(map.values().toArray()[i]);
 
 
 
@@ -71,8 +77,8 @@ public class ListToMap {
         /**
          * 收集一下属性和对象本身
          */
-        Map<Integer, House> houseMap = houses.stream().collect(Collectors.toMap(House::getOwnerid, o -> o));
-        Map<Integer, House> houseMap1 = houses.stream().collect(Collectors.toMap(House::getOwnerid, Function.identity()));
+        Map<Integer, House> houseMap = housesList.stream().collect(Collectors.toMap(House::getOwnerid, o -> o));
+        Map<Integer, House> houseMap1 = housesList.stream().collect(Collectors.toMap(House::getOwnerid, Function.identity()));
 //        System.out.println(houseMap);
         /**
          * {1=House{id=1, ownerid=1, housename='aa', address='北京海淀'}, 
